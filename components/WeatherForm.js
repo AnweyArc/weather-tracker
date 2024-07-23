@@ -55,7 +55,8 @@ const WeatherForm = () => {
   return (
     <div className={styles.weatherFormContainer}>
       <div className={styles.weatherFormCard}>
-        <form onSubmit={fetchWeather} className="flex flex-col">
+        <h1 className={styles.weatherFormHeader}>Weather Tracker</h1>
+        <form onSubmit={fetchWeather} className="flex flex-col relative">
           <input
             type="text"
             value={place}

@@ -21,6 +21,15 @@
   border: 1px solid #77b6c9; /* Border color matching the new theme */
 }
 
+/* Header text */
+.weatherFormHeader {
+  color: #ffffff; /* White text color */
+  font-size: 1.5rem; /* Equivalent to text-2xl */
+  font-weight: 700; /* Equivalent to font-semibold */
+  margin-bottom: 1rem; /* Space below the header */
+  text-align: center;
+}
+
 /* Input field */
 .weatherFormInput {
   width: 100%;
@@ -32,24 +41,22 @@
   transition: border-color 0.2s;
 }
 
-.weatherFormInput:focus {
-  border-color: #77b6c9; /* Focus border color matching the new theme */
-}
-
 /* Suggestions dropdown */
 .weatherFormSuggestions {
   position: absolute;
-  width: 100%;
+  top: 3rem; /* Aligns dropdown with the input field */
+  left: 0; /* Aligns dropdown with the left edge of the input field */
+  width: 100%; /* Matches width of the input field */
   background-color: #495e75; /* Card color for suggestions dropdown */
   border: 1px solid #77b6c9; /* New border color */
   border-radius: 0.5rem; /* Rounded-lg */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow-lg */
-  margin-top: 3rem; /* Equivalent to mt-12 */
   max-height: 8rem; /* Max-height equivalent to max-h-32 */
   overflow-y: auto;
   z-index: 10;
 }
 
+/* Suggestion item */
 .weatherFormSuggestionItem {
   padding: 0.5rem; /* Equivalent to p-2 */
   cursor: pointer;
@@ -67,7 +74,7 @@
   color: #22523b; /* Text color for button */
   background-color: #77b6c9; /* Button background color */
   border-radius: 0.5rem; /* Rounded-lg */
-  margin-top: 2rem; /* Increased margin to move button lower */
+  margin-top: 4rem; /* Increased margin to move button lower */
   transition: background-color 0.2s;
 }
 
@@ -107,7 +114,7 @@
 }
 
 .weatherFormWeatherInfo .infoItem span {
-  margin-left: 0.75rem; /* Added space between icon and text */
+  margin-left: 1rem; /* Increased space between icon and text */
 }
 
 .weatherFormWeatherInfo .infoItem div {
