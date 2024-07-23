@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTemperatureHalf, faClock, faWind, faSun, faGauge } from '@fortawesome/free-solid-svg-icons';
+import styles from '../styles/weatherform.module.css';
 
 const WeatherForm = () => {
   const [place, setPlace] = useState('');
@@ -50,40 +53,60 @@ const WeatherForm = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-gray-100">
-      <div className="relative w-full max-w-md p-6 bg-white shadow-lg rounded-lg border border-gray-200">
+    <div className={styles.weatherFormContainer}>
+      <div className={styles.weatherFormCard}>
         <form onSubmit={fetchWeather} className="flex flex-col">
           <input
             type="text"
             value={place}
             onChange={(e) => setPlace(e.target.value)}
             placeholder="Enter place name"
-            className="w-full p-3 mb-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
+            className={styles.weatherFormInput}
           />
           {suggestions.length > 0 && (
-            <ul className="absolute w-full bg-white border border-gray-300 rounded-lg shadow-lg mt-12 max-h-32 overflow-y-auto z-10">
-              {suggestions.map((suggestion, index) => (
+            <ul className={styles.weatherFormSuggestions}>
+              {suggestions.slice(0, 1).map((suggestion, index) => (
                 <li
                   key={index}
                   onClick={() => handleSuggestionClick(suggestion)}
-                  className="p-2 cursor-pointer hover:bg-gray-100"
+                  className={styles.weatherFormSuggestionItem}
                 >
                   {suggestion}
                 </li>
               ))}
             </ul>
           )}
-          <button type="submit" className="px-4 py-2 text-white bg-blue-600 rounded-lg mt-4 hover:bg-blue-700 transition-colors">
+          <div className="flex-grow" /> {/* Spacer to push the button down */}
+          <button type="submit" className={styles.weatherFormButton}>
             Get Weather
           </button>
         </form>
-        {error && <p className="mt-4 text-red-600">{error}</p>}
+        {error && <p className={styles.weatherFormError}>{error}</p>}
         {weather && (
-          <div className="mt-6 p-4 bg-white shadow-lg rounded-lg border border-gray-200">
-            <h2 className="text-2xl font-semibold">Weather in {weather.location.name}</h2>
-            <p className="mt-2 text-lg">Temperature: {weather.current.temp_c}°C</p>
-            <p className="text-lg">Condition: {weather.current.condition.text}</p>
-            <p className="text-lg">Wind Speed: {weather.current.wind_kph} km/h</p>
+          <div className={styles.weatherFormWeatherInfo}>
+            <div className="header text-2xl font-semibold">
+              <span>Weather in {weather.location.name}</span>
+            </div>
+            <div className="infoItem">
+              <FontAwesomeIcon icon={faClock} />
+              <span>{weather.location.localtime}</span>
+            </div>
+            <div className="infoItem">
+              <FontAwesomeIcon icon={faSun} />
+              <span>{weather.current.condition.text}</span>
+            </div>
+            <div className="infoItem">
+              <FontAwesomeIcon icon={faTemperatureHalf} />
+              <span>{weather.current.temp_c}°C</span>
+            </div>
+            <div className="infoItem">
+              <FontAwesomeIcon icon={faWind} />
+              <span>{weather.current.wind_kph} km/h</span>
+            </div>
+            <div className="infoItem">
+              <FontAwesomeIcon icon={faGauge} />
+              <span>Pressure: {weather.current.pressure_in} in</span>
+            </div>
           </div>
         )}
       </div>

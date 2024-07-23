@@ -2,3 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    background-color: #22523b; /* Background color for the whole website */
+    margin: 0;
+    font-family: Arial, sans-serif; /* Set a default font-family */
+  }
